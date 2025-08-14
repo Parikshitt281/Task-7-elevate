@@ -1,0 +1,36 @@
+1. Launch an EC2 instance 
+2. install docker on it 
+3. Run the container 
+4.docker run -d --name=netdata \
+  -p 19999:19999 \
+  --cap-add SYS_PTRACE \
+  --security-opt apparmor=unconfined \
+  -v /etc/passwd:/host/etc/passwd:ro \
+  -v /etc/group:/host/etc/group:ro \
+  -v /proc:/host/proc:ro \
+  -v /sys:/host/sys:ro \
+  -v /etc/os-release:/host/etc/os-release:ro \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  netdata/netdata
+5. Access the dashboard via ip:19999
+6.What to Monitor
+
+Explored panels and charts for:
+
+✅ CPU Usage
+
+✅ RAM/Memory Usage
+
+✅ Disk I/O
+
+✅ Network Usage
+
+✅ Docker containers (if you're running any)
+
+✅ System Load, Processes
+
+✅ Alerts (top right corner)
+7.docker exec -it netdata bash
+  cd /var/log/netdata
+  ls
+  see error.log or access.log
